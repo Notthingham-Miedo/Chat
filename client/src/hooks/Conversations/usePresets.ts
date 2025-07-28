@@ -36,6 +36,7 @@ export default function usePresets() {
   const { data: modelsData } = useGetModelsQuery();
   const { newConversation } = useNewConvo(index);
 
+  /* COMENTADO: Funcionalidad de presets automáticos desactivada
   useEffect(() => {
     if (modelsData?.initial) {
       return;
@@ -64,6 +65,7 @@ export default function usePresets() {
     // dependencies are stable and only needed once
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [presetsQuery.data, user, modelsData]);
+  */
 
   const setPresets = useCallback(
     (presets: TPreset[]) => {

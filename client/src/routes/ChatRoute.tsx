@@ -18,6 +18,7 @@ export default function ChatRoute() {
   const { data: startupConfig } = useGetStartupConfig();
   const { isAuthenticated, user } = useAuthRedirect();
 
+  /* COMENTADO: Funcionalidad de chat temporario desactivada
   const setIsTemporary = useRecoilCallback(
     ({ set }) =>
       (value: boolean) => {
@@ -25,6 +26,7 @@ export default function ChatRoute() {
       },
     [],
   );
+  */
   useAppStartup({ startupConfig, user });
 
   const index = 0;
@@ -44,6 +46,7 @@ export default function ChatRoute() {
   const endpointsQuery = useGetEndpointsQuery({ enabled: isAuthenticated });
   const assistantListMap = useAssistantListMap();
 
+  /* COMENTADO: Funcionalidad de chat temporario desactivada
   const isTemporaryChat = conversation && conversation.expiredAt ? true : false;
 
   useEffect(() => {
@@ -53,6 +56,7 @@ export default function ChatRoute() {
       setIsTemporary(isTemporaryChat);
     }
   }, [conversationId, isTemporaryChat, setIsTemporary]);
+  */
 
   /** This effect is mainly for the first conversation state change on first load of the page.
    *  Adjusting this may have unintended consequences on the conversation state.

@@ -368,7 +368,6 @@ function BadgeRow({
             <CodeInterpreter />
             <FileSearch />
             <Artifacts />
-            <MCPSelect />
           </>
         )}
         {ghostBadge && (

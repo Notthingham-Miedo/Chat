@@ -128,6 +128,7 @@ const SidePanelGroup = memo(
               </ResizablePanel>
             </>
           )}
+          {/* COMENTADO: SidePanel completo - Panel lateral derecho oculto 
           {!hideSidePanel && interfaceConfig.sidePanel === true && (
             <SidePanel
               panelRef={panelRef}
@@ -144,6 +145,7 @@ const SidePanelGroup = memo(
               interfaceConfig={interfaceConfig}
             />
           )}
+          */}
         </ResizablePanelGroup>
         <button
           aria-label="Close right side panel"

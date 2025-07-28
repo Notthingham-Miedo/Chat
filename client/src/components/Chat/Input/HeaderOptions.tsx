@@ -111,6 +111,7 @@ export default function HeaderOptions({
                 </div>
               </OptionsPopover>
             )}
+            {/* COMENTADO: SaveAsPresetDialog - Configuración preestablecida oculta 
             {interfaceConfig?.presets === true && (
               <SaveAsPresetDialog
                 open={saveAsDialogShow}
@@ -122,6 +123,7 @@ export default function HeaderOptions({
                 }
               />
             )}
+            */}
             {interfaceConfig?.parameters === true && (
               <PluginStoreDialog
                 isOpen={showPluginStoreDialog}

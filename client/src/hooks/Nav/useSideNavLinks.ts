@@ -65,6 +65,9 @@ export default function useSideNavLinks({
 
   const Links = useMemo(() => {
     const links: NavLink[] = [];
+    
+    // COMENTADO: Constructor de Asistente
+    /*
     if (
       isAssistantsEndpoint(endpoint) &&
       ((endpoint === EModelEndpoint.assistants &&
@@ -83,7 +86,10 @@ export default function useSideNavLinks({
         Component: PanelSwitch,
       });
     }
+    */
 
+    // COMENTADO: Constructor de Agente
+    /*
     if (
       endpointsConfig?.[EModelEndpoint.agents] &&
       hasAccessToAgents &&
@@ -98,7 +104,10 @@ export default function useSideNavLinks({
         Component: AgentPanelSwitch,
       });
     }
+    */
 
+    // COMENTADO: Indicaciones
+    /*
     if (hasAccessToPrompts) {
       links.push({
         title: 'com_ui_prompts',
@@ -108,7 +117,10 @@ export default function useSideNavLinks({
         Component: PromptsAccordion,
       });
     }
+    */
 
+    // COMENTADO: Memoria
+    /*
     if (hasAccessToMemories && hasAccessToReadMemories) {
       links.push({
         title: 'com_ui_memories',
@@ -118,7 +130,10 @@ export default function useSideNavLinks({
         Component: MemoryViewer,
       });
     }
+    */
 
+    // COMENTADO: Parámetros
+    /*
     if (
       interfaceConfig.parameters === true &&
       isParamEndpoint(endpoint ?? '', endpointType ?? '') === true &&
@@ -133,7 +148,10 @@ export default function useSideNavLinks({
         Component: Parameters,
       });
     }
+    */
 
+    // COMENTADO: Juntar archivo
+    /*
     links.push({
       title: 'com_sidepanel_attach_files',
       label: '',
@@ -141,7 +159,10 @@ export default function useSideNavLinks({
       id: 'files',
       Component: FilesPanel,
     });
+    */
 
+    // COMENTADO: Marcadores
+    /*
     if (hasAccessToBookmarks) {
       links.push({
         title: 'com_sidepanel_conversation_tags',
@@ -151,6 +172,7 @@ export default function useSideNavLinks({
         Component: BookmarkPanel,
       });
     }
+    */
 
     if (
       startupConfig?.mcpServers &&
@@ -167,6 +189,8 @@ export default function useSideNavLinks({
       });
     }
 
+    // COMENTADO: Ocultar panel
+    /*
     links.push({
       title: 'com_sidepanel_hide_panel',
       label: '',
@@ -174,6 +198,7 @@ export default function useSideNavLinks({
       onClick: hidePanel,
       id: 'hide-panel',
     });
+    */
 
     return links;
   }, [

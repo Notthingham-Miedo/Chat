@@ -50,10 +50,14 @@ function ModelSelectorContent() {
     [localize, modelSpecs, selectedValues, mappedEndpoints],
   );
 
+  // Si solo hay endpoints personalizados, mostrar solo el valor sin dropdown interactivo
+  const hasOnlyCustomEndpoints = mappedEndpoints && mappedEndpoints.length <= 1;
+
   const trigger = (
     <button
       className="my-1 flex h-10 w-full max-w-[70vw] items-center justify-center gap-2 rounded-xl border border-border-light bg-surface-secondary px-3 py-2 text-sm text-text-primary hover:bg-surface-tertiary"
       aria-label={localize('com_ui_select_model')}
+      disabled={hasOnlyCustomEndpoints} // Deshabilitar si solo hay una opción
     >
       {selectedIcon && React.isValidElement(selectedIcon) && (
         <div className="flex flex-shrink-0 items-center justify-center overflow-hidden">
@@ -63,6 +67,21 @@ function ModelSelectorContent() {
       <span className="flex-grow truncate text-left">{selectedDisplayValue}</span>
     </button>
   );
+
+  // Si solo hay endpoints personalizados, no mostrar el dropdown
+  if (hasOnlyCustomEndpoints) {
+    return (
+      <div className="relative flex w-full max-w-md flex-col items-center gap-2">
+        {trigger}
+        <DialogManager
+          keyDialogOpen={keyDialogOpen}
+          onOpenChange={onOpenChange}
+          endpointsConfig={endpointsConfig || {}}
+          keyDialogEndpoint={keyDialogEndpoint || undefined}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="relative flex w-full max-w-md flex-col items-center gap-2">

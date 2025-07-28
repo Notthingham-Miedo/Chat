@@ -55,15 +55,21 @@ export default function Header() {
             } ${!navVisible ? 'translate-x-0' : 'translate-x-[-100px]'}`}
           >
             <ModelSelector startupConfig={startupConfig} />
+            {/* COMENTADO: PresetsMenu - Configuración preestablecida oculta 
             {interfaceConfig.presets === true && interfaceConfig.modelSelect && <PresetsMenu />}
+            */}
             {hasAccessToBookmarks === true && <BookmarkMenu />}
+            {/* COMENTADO: AddMultiConvo - Múltiples conversaciones ocultas 
             {hasAccessToMultiConvo === true && <AddMultiConvo />}
+            */}
             {isSmallScreen && (
               <>
                 <ExportAndShareMenu
                   isSharedButtonEnabled={startupConfig?.sharedLinksEnabled ?? false}
                 />
+                {/* COMENTADO: TemporaryChat - Chat temporario oculto 
                 <TemporaryChat />
+                */}
               </>
             )}
           </div>
@@ -73,7 +79,9 @@ export default function Header() {
             <ExportAndShareMenu
               isSharedButtonEnabled={startupConfig?.sharedLinksEnabled ?? false}
             />
+            {/* COMENTADO: TemporaryChat - Chat temporario oculto 
             <TemporaryChat />
+            */}
           </div>
         )}
       </div>

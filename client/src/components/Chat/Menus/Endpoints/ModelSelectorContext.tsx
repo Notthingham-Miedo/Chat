@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce';
 import React, { createContext, useContext, useState, useMemo } from 'react';
-import { isAgentsEndpoint, isAssistantsEndpoint } from 'librechat-data-provider';
+import { isAgentsEndpoint, isAssistantsEndpoint, EModelEndpoint } from 'librechat-data-provider';
 import type * as t from 'librechat-data-provider';
 import type { Endpoint, SelectedValues } from '~/common';
 import { useAgentsMapContext, useAssistantsMapContext, useChatContext } from '~/Providers';
@@ -53,12 +53,24 @@ export function ModelSelectorProvider({ children, startupConfig }: ModelSelector
   const { data: endpointsConfig } = useGetEndpointsQuery();
   const { conversation, newConversation } = useChatContext();
   const modelSpecs = useMemo(() => startupConfig?.modelSpecs?.list ?? [], [startupConfig]);
-  const { mappedEndpoints, endpointRequiresUserKey } = useEndpoints({
+  const { mappedEndpoints: allMappedEndpoints, endpointRequiresUserKey } = useEndpoints({
     agentsMap,
     assistantsMap,
     startupConfig,
     endpointsConfig,
   });
+
+  // Filtrar solo endpoints personalizados (custom)
+  const mappedEndpoints = useMemo(() => {
+    if (!allMappedEndpoints) return [];
+    
+    // Filtrar para mostrar solo endpoints de tipo 'custom'
+    return allMappedEndpoints.filter(endpoint => 
+      endpoint.type === EModelEndpoint.custom || 
+      endpoint.value === 'custom'
+    );
+  }, [allMappedEndpoints]);
+
   const { onSelectEndpoint, onSelectSpec } = useSelectMention({
     // presets,
     modelSpecs,
@@ -68,12 +80,25 @@ export function ModelSelectorProvider({ children, startupConfig }: ModelSelector
     returnHandlers: true,
   });
 
-  // State
-  const [selectedValues, setSelectedValues] = useState<SelectedValues>({
-    endpoint: conversation?.endpoint || '',
-    model: conversation?.model || '',
-    modelSpec: conversation?.spec || '',
+  // State - Establecer valores por defecto para el endpoint personalizado
+  const [selectedValues, setSelectedValues] = useState<SelectedValues>(() => {
+    // Si hay un endpoint personalizado disponible, usarlo por defecto
+    const customEndpoint = mappedEndpoints.find(ep => ep.type === EModelEndpoint.custom);
+    if (customEndpoint && (!conversation?.endpoint || conversation.endpoint === 'new')) {
+      return {
+        endpoint: customEndpoint.value || 'custom',
+        model: 'gpt-4o-mini', // Modelo por defecto del librechat.yaml
+        modelSpec: '',
+      };
+    }
+    
+    return {
+      endpoint: conversation?.endpoint || '',
+      model: conversation?.model || '',
+      modelSpec: conversation?.spec || '',
+    };
   });
+
   useSelectorEffects({
     agentsMap,
     conversation,
@@ -86,7 +111,7 @@ export function ModelSelectorProvider({ children, startupConfig }: ModelSelector
 
   const keyProps = useKeyDialog();
 
-  // Memoized search results
+  // Memoized search results - Solo buscar dentro de endpoints personalizados
   const searchResults = useMemo(() => {
     if (!searchValue) {
       return null;
