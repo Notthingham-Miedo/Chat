@@ -1,21 +1,32 @@
-import { useMemo } from 'react';
+// COMENTADO: useMemo ya no se necesita después de ocultar componentes
+// import { useMemo } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { getConfigDefaults, PermissionTypes, Permissions } from 'librechat-data-provider';
+// COMENTADO: Imports no utilizadas después de ocultar componentes
+// import { getConfigDefaults, PermissionTypes, Permissions } from 'librechat-data-provider';
 import type { ContextType } from '~/common';
-import ModelSelector from './Menus/Endpoints/ModelSelector';
+// COMENTADO: Import de ModelSelector - Selector de modelo oculto
+// import ModelSelector from './Menus/Endpoints/ModelSelector';
 import { PresetsMenu, HeaderNewChat, OpenSidebar } from './Menus';
 import { useGetStartupConfig } from '~/data-provider';
-import ExportAndShareMenu from './ExportAndShareMenu';
-import { useMediaQuery, useHasAccess } from '~/hooks';
-import BookmarkMenu from './Menus/BookmarkMenu';
-import { TemporaryChat } from './TemporaryChat';
-import AddMultiConvo from './AddMultiConvo';
+// COMENTADO: Import de ExportAndShareMenu - Botones de compartir y exportar chat ocultos
+// import ExportAndShareMenu from './ExportAndShareMenu';
+// COMENTADO: useHasAccess ya no se necesita después de ocultar componentes
+import { useMediaQuery } from '~/hooks';
+// COMENTADO: Import de BookmarkMenu - Menú de marcadores oculto
+// import BookmarkMenu from './Menus/BookmarkMenu';
+// COMENTADO: Import de TemporaryChat - Chat temporario oculto
+// import { TemporaryChat } from './TemporaryChat';
+// COMENTADO: Import de AddMultiConvo - Múltiples conversaciones ocultas
+// import AddMultiConvo from './AddMultiConvo';
 
-const defaultInterface = getConfigDefaults().interface;
+// COMENTADO: Variable no utilizada después de ocultar componentes
+// const defaultInterface = getConfigDefaults().interface;
 
 export default function Header() {
   const { data: startupConfig } = useGetStartupConfig();
   const { navVisible, setNavVisible } = useOutletContext<ContextType>();
+  // COMENTADO: Variables no utilizadas después de ocultar componentes
+  /*
   const interfaceConfig = useMemo(
     () => startupConfig?.interface ?? defaultInterface,
     [startupConfig],
@@ -30,6 +41,7 @@ export default function Header() {
     permissionType: PermissionTypes.MULTI_CONVO,
     permission: Permissions.USE,
   });
+  */
 
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
@@ -54,19 +66,25 @@ export default function Header() {
               !isSmallScreen ? 'transition-all duration-200 ease-in-out' : ''
             } ${!navVisible ? 'translate-x-0' : 'translate-x-[-100px]'}`}
           >
+            {/* COMENTADO: ModelSelector - Selector de modelo oculto 
             <ModelSelector startupConfig={startupConfig} />
+            */}
             {/* COMENTADO: PresetsMenu - Configuración preestablecida oculta 
             {interfaceConfig.presets === true && interfaceConfig.modelSelect && <PresetsMenu />}
             */}
+            {/* COMENTADO: BookmarkMenu - Menú de marcadores oculto 
             {hasAccessToBookmarks === true && <BookmarkMenu />}
+            */}
             {/* COMENTADO: AddMultiConvo - Múltiples conversaciones ocultas 
             {hasAccessToMultiConvo === true && <AddMultiConvo />}
             */}
             {isSmallScreen && (
               <>
+                {/* COMENTADO: ExportAndShareMenu - Botones de compartir y exportar chat ocultos 
                 <ExportAndShareMenu
                   isSharedButtonEnabled={startupConfig?.sharedLinksEnabled ?? false}
                 />
+                */}
                 {/* COMENTADO: TemporaryChat - Chat temporario oculto 
                 <TemporaryChat />
                 */}
@@ -76,9 +94,11 @@ export default function Header() {
         </div>
         {!isSmallScreen && (
           <div className="flex items-center gap-2">
+            {/* COMENTADO: ExportAndShareMenu - Botones de compartir y exportar chat ocultos 
             <ExportAndShareMenu
               isSharedButtonEnabled={startupConfig?.sharedLinksEnabled ?? false}
             />
+            */}
             {/* COMENTADO: TemporaryChat - Chat temporario oculto 
             <TemporaryChat />
             */}

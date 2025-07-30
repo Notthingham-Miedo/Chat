@@ -76,8 +76,8 @@ const Nav = memo(
         },
         {
           enabled: isAuthenticated,
-          staleTime: 30000,
-          cacheTime: 300000,
+          staleTime: 5 * 60 * 1000, // 5 minutos - reducir refetch automático
+          cacheTime: 30 * 60 * 1000, // 30 minutos - mantener consistencia con config por defecto
         },
       );
 

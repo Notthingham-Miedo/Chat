@@ -15,7 +15,7 @@ type ModelSelectorContextType = {
   selectedValues: SelectedValues;
   endpointSearchValues: Record<string, string>;
   searchResults: (t.TModelSpec | Endpoint)[] | null;
-  // LibreChat
+  // Chief Dashboard
   modelSpecs: t.TModelSpec[];
   mappedEndpoints: Endpoint[];
   agentsMap: t.TAgentsMap | undefined;
@@ -87,7 +87,7 @@ export function ModelSelectorProvider({ children, startupConfig }: ModelSelector
     if (customEndpoint && (!conversation?.endpoint || conversation.endpoint === 'new')) {
       return {
         endpoint: customEndpoint.value || 'custom',
-        model: 'gpt-4o-mini', // Modelo por defecto del librechat.yaml
+        model: 'gpt-4o-mini', // Modelo por defecto del archivo de configuración
         modelSpec: '',
       };
     }
@@ -190,7 +190,7 @@ export function ModelSelectorProvider({ children, startupConfig }: ModelSelector
     searchResults,
     selectedValues,
     endpointSearchValues,
-    // LibreChat
+    // Chief Dashboard
     agentsMap,
     modelSpecs,
     assistantsMap,

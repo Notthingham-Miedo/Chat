@@ -34,13 +34,11 @@ export default function Footer({ className }: { className?: string }) {
     </a>
   );
 
+  // COMENTADO: Footer principal eliminado - no mostrar texto de versión ni marca
   const mainContentParts = (
     typeof config?.customFooter === 'string'
       ? config.customFooter
-      : '[LibreChat ' +
-        Constants.VERSION +
-        '](https://librechat.ai) - ' +
-        localize('com_ui_latest_footer')
+      : '' // Footer vacío - eliminado "LibreChat" y "IA para todos"
   ).split('|');
 
   useEffect(() => {
