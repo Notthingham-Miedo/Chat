@@ -105,7 +105,7 @@ export default function useTextarea({
       // return `${localize('com_endpoint_message_new', {
       //   0: sender ? sender : localize('com_endpoint_ai'),
       // })}`;
-      return "conversa con el agente";
+      return "Conversa con el agente";
     };
 
     const placeholder = getPlaceholderText();
