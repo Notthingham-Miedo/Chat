@@ -18,7 +18,8 @@ import NewChat from './NewChat';
 import { cn } from '~/utils';
 import store from '~/store';
 
-const BookmarkNav = lazy(() => import('./Bookmarks/BookmarkNav'));
+// COMENTADO: BookmarkNav - Componente de navegación de bookmarks oculto
+// const BookmarkNav = lazy(() => import('./Bookmarks/BookmarkNav'));
 const AccountSettings = lazy(() => import('./AccountSettings'));
 
 const NAV_WIDTH_DESKTOP = '260px';
@@ -154,16 +155,17 @@ const Nav = memo(
       [search.enabled, isSmallScreen],
     );
 
+    // COMENTADO: headerButtons con BookmarkNav - Icono de bookmarks en sidebar oculto
     const headerButtons = useMemo(
       () =>
-        hasAccessToBookmarks && (
-          <>
-            <div className="mt-1.5" />
-            <Suspense fallback={null}>
-              <BookmarkNav tags={tags} setTags={setTags} isSmallScreen={isSmallScreen} />
-            </Suspense>
-          </>
-        ),
+        null, // hasAccessToBookmarks && (
+        //   <>
+        //     <div className="mt-1.5" />
+        //     <Suspense fallback={null}>
+        //       <BookmarkNav tags={tags} setTags={setTags} isSmallScreen={isSmallScreen} />
+        //     </Suspense>
+        //   </>
+        // ),
       [hasAccessToBookmarks, tags, isSmallScreen],
     );
 

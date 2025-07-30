@@ -1,16 +1,23 @@
-import { useState, memo } from 'react';
-import { useRecoilState } from 'recoil';
+// COMENTADO: useState ya no se necesita después de ocultar botones
+import { memo } from 'react';
+// COMENTADO: useRecoilState ya no se necesita para showFiles
+// import { useRecoilState } from 'recoil';
 import * as Select from '@ariakit/react/select';
-import { FileText, LogOut } from 'lucide-react';
-import { LinkIcon, GearIcon, DropdownMenuSeparator } from '~/components';
+// COMENTADO: Imports no utilizados después de ocultar botones del menú
+// import { FileText, LogOut } from 'lucide-react';
+import { LogOut } from 'lucide-react';
+// import { LinkIcon, GearIcon, DropdownMenuSeparator } from '~/components';
+import { DropdownMenuSeparator } from '~/components';
 import { useGetStartupConfig, useGetUserBalance } from '~/data-provider';
-import FilesView from '~/components/Chat/Input/Files/FilesView';
+// import FilesView from '~/components/Chat/Input/Files/FilesView';
 import { useAuthContext } from '~/hooks/AuthContext';
 import useAvatar from '~/hooks/Messages/useAvatar';
 import { UserIcon } from '~/components/svg';
 import { useLocalize } from '~/hooks';
-import Settings from './Settings';
-import store from '~/store';
+// COMENTADO: Import de Settings - Modal de configuraciones oculto
+// import Settings from './Settings';
+// COMENTADO: Import de store - ya no se necesita para showFiles
+// import store from '~/store';
 
 function AccountSettings() {
   const localize = useLocalize();
@@ -19,8 +26,9 @@ function AccountSettings() {
   const balanceQuery = useGetUserBalance({
     enabled: !!isAuthenticated && startupConfig?.balance?.enabled,
   });
-  const [showSettings, setShowSettings] = useState(false);
-  const [showFiles, setShowFiles] = useRecoilState(store.showFiles);
+  // COMENTADO: Variables de estado no utilizadas después de ocultar botones
+  // const [showSettings, setShowSettings] = useState(false);
+  // const [showFiles, setShowFiles] = useRecoilState(store.showFiles);
 
   const avatarSrc = useAvatar(user);
   const avatarSeed = user?.avatar || user?.name || user?.username || '';
@@ -84,6 +92,7 @@ function AccountSettings() {
             <DropdownMenuSeparator />
           </>
         )}
+        {/* COMENTADO: Mis archivos - Botón de acceso a archivos oculto 
         <Select.SelectItem
           value=""
           onClick={() => setShowFiles(true)}
@@ -92,6 +101,8 @@ function AccountSettings() {
           <FileText className="icon-md" aria-hidden="true" />
           {localize('com_nav_my_files')}
         </Select.SelectItem>
+        */}
+        {/* COMENTADO: Ayuda y preguntas frecuentes - Botón de ayuda oculto 
         {startupConfig?.helpAndFaqURL !== '/' && (
           <Select.SelectItem
             value=""
@@ -102,6 +113,8 @@ function AccountSettings() {
             {localize('com_nav_help_faq')}
           </Select.SelectItem>
         )}
+        */}
+        {/* COMENTADO: Configuraciones - Botón de acceso a settings oculto 
         <Select.SelectItem
           value=""
           onClick={() => setShowSettings(true)}
@@ -110,6 +123,7 @@ function AccountSettings() {
           <GearIcon className="icon-md" aria-hidden="true" />
           {localize('com_nav_settings')}
         </Select.SelectItem>
+        */}
         <DropdownMenuSeparator />
         <Select.SelectItem
           aria-selected={true}
@@ -121,8 +135,10 @@ function AccountSettings() {
           {localize('com_nav_log_out')}
         </Select.SelectItem>
       </Select.SelectPopover>
+      {/* COMENTADO: Componentes modales de archivos y configuraciones ocultos 
       {showFiles && <FilesView open={showFiles} onOpenChange={setShowFiles} />}
       {showSettings && <Settings open={showSettings} onOpenChange={setShowSettings} />}
+      */}
     </Select.SelectProvider>
   );
 }

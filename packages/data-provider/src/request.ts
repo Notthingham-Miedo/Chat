@@ -4,6 +4,30 @@ import * as endpoints from './api-endpoints';
 import { setTokenHeader } from './headers-helpers';
 import type * as t from './types';
 
+// Configure axios base URL based on environment
+const getBaseURL = () => {
+  // Check for explicit API URL from environment variables
+  if (typeof process !== 'undefined' && process.env?.VITE_API_URL) {
+    return process.env.VITE_API_URL;
+  }
+  
+  // If running in browser environment
+  if (typeof window !== 'undefined') {
+    // If running on Vite dev server port (3090), use relative URLs (proxy will handle)
+    if (window.location.port === '3090') {
+      return ''; // Use relative URLs, let Vite proxy handle it
+    }
+    // For other ports or production, use explicit backend URL
+    return 'http://localhost:3080';
+  }
+  
+  // Default fallback for server-side rendering or other environments
+  return 'http://localhost:3080';
+};
+
+// Set axios defaults
+axios.defaults.baseURL = getBaseURL();
+
 async function _get<T>(url: string, options?: AxiosRequestConfig): Promise<T> {
   const response = await axios.get(url, { ...options });
   return response.data;

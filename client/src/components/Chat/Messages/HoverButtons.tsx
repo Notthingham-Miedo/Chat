@@ -181,9 +181,13 @@ const HoverButtons = ({
 
   const handleCopy = () => copyToClipboard(setIsCopied);
 
+  // COMENTADO: Todos los 7 botones de acciones de mensaje ocultos
+  return null;
+  
+  /*
   return (
     <div className="group visible flex justify-center gap-0.5 self-end focus-within:outline-none lg:justify-start">
-      {/* Text to Speech */}
+      {/* Text to Speech - Botón 1 *\/}
       {TextToSpeech && (
         <MessageAudio
           index={index}
@@ -202,7 +206,7 @@ const HoverButtons = ({
         />
       )}
 
-      {/* Copy Button */}
+      {/* Copy Button - Botón 2 *\/}
       <HoverButton
         onClick={handleCopy}
         title={
@@ -213,7 +217,7 @@ const HoverButtons = ({
         className={`ml-0 flex items-center gap-1.5 text-xs ${isSubmitting && isCreatedByUser ? 'md:opacity-0 md:group-hover:opacity-100' : ''}`}
       />
 
-      {/* Edit Button */}
+      {/* Edit Button - Botón 3 *\/}
       {isEditableEndpoint && (
         <HoverButton
           id={`edit-${message.messageId}`}
@@ -228,7 +232,7 @@ const HoverButtons = ({
         />
       )}
 
-      {/* Fork Button */}
+      {/* Fork Button - Botón 4 *\/}
       <Fork
         messageId={message.messageId}
         conversationId={conversation.conversationId}
@@ -237,12 +241,12 @@ const HoverButtons = ({
         isLast={isLast}
       />
 
-      {/* Feedback Buttons */}
+      {/* Feedback Buttons - Botón 5 *\/}
       {!isCreatedByUser && (
         <Feedback handleFeedback={handleFeedback} feedback={message.feedback} isLast={isLast} />
       )}
 
-      {/* Regenerate Button */}
+      {/* Regenerate Button - Botón 6 *\/}
       {regenerateEnabled && (
         <HoverButton
           onClick={regenerate}
@@ -253,7 +257,7 @@ const HoverButtons = ({
         />
       )}
 
-      {/* Continue Button */}
+      {/* Continue Button - Botón 7 *\/}
       {continueSupported && (
         <HoverButton
           onClick={(e) => e && handleContinue(e)}
@@ -265,6 +269,7 @@ const HoverButtons = ({
       )}
     </div>
   );
+  */
 };
 
 export default memo(HoverButtons);
