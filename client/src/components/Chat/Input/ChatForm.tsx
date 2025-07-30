@@ -300,9 +300,12 @@ const ChatForm = memo(({ index = 0 }: { index?: number }) => {
                 isRTL ? 'flex-row-reverse' : 'flex-row',
               )}
             >
+              {/* COMENTADO: AttachFileChat - Botón de adjuntar archivo oculto 
               <div className={`${isRTL ? 'mr-2' : 'ml-2'}`}>
                 <AttachFileChat disableInputs={disableInputs} />
               </div>
+              */}
+              {/* COMENTADO: BadgeRow - Herramientas ocultas 
               <BadgeRow
                 showEphemeralBadges={!isAgentsEndpoint(endpoint) && !isAssistantsEndpoint(endpoint)}
                 isSubmitting={isSubmitting || isSubmittingAdded}
@@ -312,7 +315,9 @@ const ChatForm = memo(({ index = 0 }: { index?: number }) => {
                   Array.isArray(conversation?.messages) && conversation.messages.length >= 1
                 }
               />
+              */}
               <div className="mx-auto flex" />
+              {/* COMENTADO: AudioRecorder - Micrófono oculto 
               {SpeechToText && (
                 <AudioRecorder
                   methods={methods}
@@ -322,6 +327,7 @@ const ChatForm = memo(({ index = 0 }: { index?: number }) => {
                   isSubmitting={isSubmitting}
                 />
               )}
+              */}
               <div className={`${isRTL ? 'ml-2' : 'mr-2'}`}>
                 {(isSubmitting || isSubmittingAdded) && (showStopButton || showStopAdded) ? (
                   <StopButton stop={handleStopGenerating} setShowStopButton={setShowStopButton} />

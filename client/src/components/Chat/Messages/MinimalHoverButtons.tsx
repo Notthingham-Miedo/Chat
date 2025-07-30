@@ -17,6 +17,10 @@ export default function MinimalHoverButtons({ message, searchResults }: THoverBu
     searchResults,
   });
 
+  // COMENTADO: Botones mínimos de mensaje ocultos
+  return null;
+  
+  /*
   return (
     <div className="visible mt-0 flex justify-center gap-1 self-end text-gray-400 lg:justify-start">
       <button
@@ -31,4 +35,5 @@ export default function MinimalHoverButtons({ message, searchResults }: THoverBu
       </button>
     </div>
   );
+  */
 }
