@@ -13,7 +13,8 @@ import {
 } from '~/hooks';
 import { useConversationsInfiniteQuery } from '~/data-provider';
 import { Conversations } from '~/components/Conversations';
-import SearchBar from './SearchBar';
+// COMENTADO: SearchBar - Barra de búsqueda oculta
+// import SearchBar from './SearchBar';
 import NewChat from './NewChat';
 import { cn } from '~/utils';
 import store from '~/store';
@@ -150,8 +151,9 @@ const Nav = memo(
       fetchNextPage();
     }, [isFetchingNextPage, computedHasNextPage, fetchNextPage]);
 
+    // COMENTADO: SearchBar - Barra de búsqueda de conversaciones oculta
     const subHeaders = useMemo(
-      () => search.enabled === true && <SearchBar isSmallScreen={isSmallScreen} />,
+      () => null, // search.enabled === true && <SearchBar isSmallScreen={isSmallScreen} />,
       [search.enabled, isSmallScreen],
     );
 

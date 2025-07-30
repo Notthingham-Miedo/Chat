@@ -188,6 +188,10 @@ function ConvoOptions({
 
   const menuId = useId();
 
+  // COMENTADO: ConvoOptions - Tres puntitos de opciones del chat ocultos
+  return null;
+  
+  /*
   return (
     <>
       <DropdownPopup
@@ -244,6 +248,7 @@ function ConvoOptions({
       )}
     </>
   );
+  */
 }
 
 export default memo(ConvoOptions, (prevProps, nextProps) => {
