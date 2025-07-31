@@ -80,32 +80,14 @@ export default function useTextarea({
       if (disabled) {
         return localize('com_endpoint_config_placeholder');
       }
-      const currentEndpoint = conversation?.endpoint ?? '';
-      const currentAgentId = conversation?.agent_id ?? '';
-      const currentAssistantId = conversation?.assistant_id ?? '';
-      if (isAgent && (!currentAgentId || !agentsMap?.[currentAgentId])) {
-        return localize('com_endpoint_agent_placeholder');
-      } else if (
-        isAssistant &&
-        (!currentAssistantId || !assistantMap?.[currentEndpoint]?.[currentAssistantId])
-      ) {
-        return localize('com_endpoint_assistant_placeholder');
-      }
-
-      if (isNotAppendable) {
-        return localize('com_endpoint_message_not_appendable');
-      }
-
+      // Siempre mostrar el mensaje de com_endpoint_message_new
       const sender =
         isAssistant || isAgent
           ? getEntityName({ name: entityName, isAgent, localize })
           : getSender(conversation as TEndpointOption);
-
-      // COMENTADO: Placeholder dinámico reemplazado por texto fijo
-      // return `${localize('com_endpoint_message_new', {
-      //   0: sender ? sender : localize('com_endpoint_ai'),
-      // })}`;
-      return "Conversa con el agente";
+      return `${localize('com_endpoint_message_new', {
+        0: sender ? sender : localize('com_endpoint_ai'),
+      })}`;
     };
 
     const placeholder = getPlaceholderText();

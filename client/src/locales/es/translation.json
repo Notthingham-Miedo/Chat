@@ -197,7 +197,7 @@
   "com_endpoint_instructions_assistants_placeholder": "Anula las instrucciones del asistente. Esto es útil para modificar el comportamiento por ejecución.",
   "com_endpoint_max_output_tokens": "Tokens de Salida Máximos",
   "com_endpoint_message": "Mensaje",
-  "com_endpoint_message_new": "Mensaje {{0}}",
+  "com_endpoint_message_new": "Conversá con el agente",
   "com_endpoint_message_not_appendable": "Edita tu mensaje o regénera.",
   "com_endpoint_my_preset": "Mi configuración preestablecida",
   "com_endpoint_no_presets": "Aún no hay configuraciones preestablecidas, utiliza el botón de configuración para crear una",
